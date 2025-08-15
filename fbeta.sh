@@ -2,6 +2,9 @@
 
 # Định nghĩa các biến
 GITHUB_TOKEN="$1"
+DEFAULT_FLUTTER_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
+DEFAULT_IOS_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
+IOS_BUILD="${4:-1}"
 REPO_OWNER="TrucPham0502"
 REPO_NAME="CICD"
 BRANCH="main"
@@ -42,7 +45,7 @@ chmod +x build.sh
 
 # Chạy script
 source prod.beta.env 2>/dev/null || true
-./build.sh "$@"
+./build.sh "$@" "$DEFAULT_FLUTTER_ROOT" "$DEFAULT_IOS_ROOT" "$IOS_BUILD"
 
 # Dọn dẹp
 cd - >/dev/null
