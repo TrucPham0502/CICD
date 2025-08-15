@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Định nghĩa các biến
-GITHUB_TOKEN="$1"
+TOKEN="$1"
 DEFAULT_FLUTTER_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
 DEFAULT_IOS_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
 IOS_BUILD="${4:-1}"
@@ -17,7 +17,7 @@ cd "$TEMP_DIR"
 
 # Tải các file cần thiết
 echo "Downloading build script and dependencies..."
-curl -H "Authorization: token ${GITHUB_TOKEN}" \
+curl -H "Authorization: token ${TOKEN}" \
      -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${SCRIPT_NAME}" \
      -o build.sh
 
@@ -28,15 +28,15 @@ if [ ! -f build.sh ]; then
 fi
 
 # Tải các file phụ thuộc khác nếu cần
-curl -H "Authorization: token ${GITHUB_TOKEN}" \
+curl -H "Authorization: token ${TOKEN}" \
      -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/recipients.txt" \
      -o recipients.txt 2>/dev/null || true
 
-curl -H "Authorization: token ${GITHUB_TOKEN}" \
+curl -H "Authorization: token ${TOKEN}" \
      -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/beta.env" \
      -o beta.env 2>/dev/null || true
 
-curl -H "Authorization: token ${GITHUB_TOKEN}" \
+curl -H "Authorization: token ${TOKEN}" \
      -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/Podfile" \
      -o Podfile 2>/dev/null || true
 
