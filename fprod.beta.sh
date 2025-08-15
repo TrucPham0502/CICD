@@ -2,8 +2,8 @@
 
 # Định nghĩa các biến
 TOKEN="$1"
-DEFAULT_FLUTTER_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
-DEFAULT_IOS_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
+DEFAULT_FLUTTER_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
+DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
 IOS_BUILD="${4:-}"
 
 # Tạo thư mục tạm để chứa các file
