@@ -1,4 +1,4 @@
-# chmod +x ./build2.sh
+# chmod +x ./build.sh
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -50,7 +50,7 @@ abs_path() {
   fi
 }
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 
 # -------- functions --------
 
@@ -159,6 +159,7 @@ pod_install_update() {
 build_flutter_framework() {
   local flutter_root="$1"
   local out_dir="$2" # abs or relative
+  local SRC_PODFILE="$3"
   [ -d "$flutter_root" ] || error "flutter build: flutter_root không tồn tại: $flutter_root"
   command -v flutter >/dev/null 2>&1 || error "flutter CLI không tìm thấy trên PATH."
 
@@ -173,7 +174,6 @@ build_flutter_framework() {
   flutter pub get
 
   # Replace Podfile if a Podfile exists in SCRIPT_DIR
-  SRC_PODFILE="$SCRIPT_DIR/Podfile"
   DEST_PODFILE="$flutter_root/.ios/Podfile"
   if [ -f "$SRC_PODFILE" ]; then
     info "Tìm thấy Podfile tại $SRC_PODFILE -> sẽ thay thế $DEST_PODFILE"
@@ -447,19 +447,16 @@ get_last_commits_today() {
 # ------------------------------------------------ main script flow ------------------------------------------------
 
 # ------------------------------------------------ Defaults (you can override env vars) ------------------------------------------------
-DEFAULT_FLUTTER_ROOT="${1:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
-DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
-IOS_BUILD="${3:-IOS_BUILD}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# DEFAULT_FLUTTER_ROOT="/Users/ftelcmr/Desktop/Source/Flutter_FPTLife"
-# DEFAULT_IOS_ROOT="/Users/ftelcmr/FPT_LIFE"
+# DEFAULT_FLUTTER_ROOT="/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"
+# DEFAULT_IOS_ROOT="/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"
 
-
-SCHEME="${SCHEME:-FPTLife_beta}"
-CONFIGURATION="${CONFIGURATION:-Release beta}"
-EXPORT_METHOD="${EXPORT_METHOD:-enterprise}"
+SCHEME="${SCHEME:-}"
+CONFIGURATION="${CONFIGURATION:-}"
+EXPORT_METHOD="${EXPORT_METHOD:-}"
 OUTPUT_IPA_DIR="$(abs_path "${OUTPUT_IPA_DIR:-$SCRIPT_DIR/ipa_build}")"
-TEAM_ID="${TEAM_ID:-7755R4CX4U}"  # override via env if needed
+TEAM_ID="${TEAM_ID:-}"  # override via env if needed
 STASH_NAME="${STASH_NAME:-}"
 DIAWI_TOKEN="${DIAWI_TOKEN:-}"
 APP_STORE_U="${APP_STORE_U:-}"
@@ -471,27 +468,30 @@ info "EXPORT_METHOD=$EXPORT_METHOD"
 info "TEAM_ID=$TEAM_ID"
 info "STASH_NAME=$STASH_NAME"
 
-# read -r -p "Đường dẫn source root Flutter (mặc định: $DEFAULT_FLUTTER_ROOT): " FLUTTER_ROOT_INPUT
-FLUTTER_ROOT="${FLUTTER_ROOT_INPUT:-$DEFAULT_FLUTTER_ROOT}"
 
-# read -r -p "Đường dẫn source root iOS native (mặc định: $DEFAULT_IOS_ROOT): " IOS_ROOT_INPUT
-IOS_ROOT="${IOS_ROOT_INPUT:-$DEFAULT_IOS_ROOT}"
-
-# FLUTTER_ROOT="$(abs_path "$FLUTTER_ROOT")"
-IOS_ROOT="$(abs_path "$IOS_ROOT")"
+FLUTTER_ROOT="${2:-}"
+IOS_ROOT="${1:-}"
 
 info "Flutter root: $FLUTTER_ROOT"
 info "iOS root:     $IOS_ROOT"
 
 
 # ------------------------------------------------ Ask branches ------------------------------------------------
-read -r -p "Nhập tên branch Flutter muốn checkout (để trống để bỏ qua): " BRANCH_FLUTTER
-read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua): " BRANCH_IOS
 
+if [ -n "$IOS_ROOT" ]; then
+  read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua): " BRANCH_IOS
+else
+  error "iOS root không được cung cấp. Không thể checkout branch iOS."
+  exit 1
+fi
+
+if [ -n "$FLUTTER_ROOT" ]; then
+  read -r -p "Nhập tên branch Flutter muốn checkout (để trống để bỏ qua): " BRANCH_FLUTTER
+fi
 
 # ------------------------------------------------ Ask version ------------------------------------------------
 
-
+IOS_BUILD="${3:-IOS_BUILD}"
 if [ -z "$IOS_BUILD" ]; then
   read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
   IOS_BUILD="${IOS_BUILD_INPUT:-$IOS_BUILD}"
@@ -500,23 +500,23 @@ fi
 
 
 # ---------------------------------------- If flutter branch provided -> checkout + build + copy ----------------------------------------
-if [ -n "$BRANCH_FLUTTER" ]; then
+if [ -n "${BRANCH_FLUTTER:-}" ]; then
   git_checkout_and_pull "$FLUTTER_ROOT" "$BRANCH_FLUTTER"
 else
   info "Bỏ qua bước build Flutter (không có branch được cung cấp)."
 fi
 
 # ---------------------------------------- If iOS branch provided -> checkout/pull ----------------------------------------
-if [ -n "$BRANCH_IOS" ]; then
+if [ -n "${BRANCH_IOS:-}" ]; then
   git_checkout_and_pull "$IOS_ROOT" "$BRANCH_IOS" "$SCRIPT_DIR/$STASH_NAME"
 else
   info "Bỏ qua checkout iOS (không có branch được cung cấp)."
 fi
 
  # ---------------------------------------- build flutter ----------------------------------------
-if [ -n "$BRANCH_FLUTTER" ]; then
+if [ -n "${BRANCH_FLUTTER:-}" ]; then
   FLUTTER_BUILD_DIR="$SCRIPT_DIR/flutter_build"
-  build_flutter_framework "$FLUTTER_ROOT" "$FLUTTER_BUILD_DIR"
+  build_flutter_framework "$FLUTTER_ROOT" "$FLUTTER_BUILD_DIR" "$SCRIPT_DIR/Podfile"
 
   # ---------------------------------------- remove duplicates pattern (optional) - run in flutter_build dir ----------------------------------------
   pushd "$FLUTTER_BUILD_DIR" >/dev/null || true

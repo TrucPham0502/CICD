@@ -49,7 +49,7 @@ chmod +x build.sh
 
 # Chạy script
 source prod.beta.env 2>/dev/null || true
-./build.sh "$@" "$DEFAULT_FLUTTER_ROOT" "$DEFAULT_IOS_ROOT" "$IOS_BUILD"
+./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$IOS_BUILD"
 
 # Dọn dẹp
 cd - >/dev/null
