@@ -4,45 +4,37 @@
 TOKEN="$1"
 DEFAULT_FLUTTER_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
 DEFAULT_IOS_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
-IOS_BUILD="${4:-1}"
-REPO_OWNER="TrucPham0502"
-REPO_NAME="CICD"
-BRANCH="main"
-SCRIPT_NAME="build.sh"
+IOS_BUILD="${4:-}"
 
 # Tạo thư mục tạm để chứa các file
 TEMP_DIR="/tmp/ios_build_$(date +%s)"
 mkdir -p "$TEMP_DIR"
 cd "$TEMP_DIR"
 
-# Tải các file cần thiết
-echo "Downloading build script and dependencies..."
-curl -H "Authorization: token ${TOKEN}" \
+get() {
+     REPO_OWNER="TrucPham0502"
+     REPO_NAME="CICD"
+     BRANCH="main"
+     local SCRIPT_NAME="$1"
+     curl -H "Authorization: token ${TOKEN}" \
      -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${SCRIPT_NAME}" \
-     -o build.sh
+     -o $SCRIPT_NAME 2>/dev/null || true
+}
 
+# Tải các file cần thiết
+echo "Downloading....."
+get build.sh
+get recipients.txt
+get prod.beta.env
+get Podfile
+get stash.prod.beta.patch
 # Kiểm tra file đã tải về thành công
-if [ ! -f build.sh ]; then
-    echo "❌ Failed to download build.sh"
+if [ ! -f build.sh ] && [ ! -f recipients.txt ] && [ ! -f beta.env ] && [ ! -f Podfile ] && [ ! -f stash.prod.beta.patch ]; then
+    echo "❌ Failed to download"
+    cd - >/dev/null
+    rm -rf "$TEMP_DIR"
     exit 1
 fi
-
-# Tải các file phụ thuộc khác nếu cần
-curl -H "Authorization: token ${TOKEN}" \
-     -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/recipients.txt" \
-     -o recipients.txt 2>/dev/null || true
-
-curl -H "Authorization: token ${TOKEN}" \
-     -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/prod.beta.env" \
-     -o prod.beta.env 2>/dev/null || true
-
-curl -H "Authorization: token ${TOKEN}" \
-     -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/stash.prod.beta.patch" \
-     -o stash.prod.beta.patch 2>/dev/null || true
-
-curl -H "Authorization: token ${TOKEN}" \
-     -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/Podfile" \
-     -o Podfile 2>/dev/null || true
 
 # Cấp quyền thực thi cho script
 chmod +x build.sh

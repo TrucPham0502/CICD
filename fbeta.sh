@@ -6,11 +6,6 @@ DEFAULT_FLUTTER_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
 DEFAULT_IOS_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
 IOS_BUILD="${4:-}"
 
-echo "$TOKEN"
-echo "$DEFAULT_FLUTTER_ROOT"
-echo "$DEFAULT_IOS_ROOT" 
-echo "$IOS_BUILD"
-
 # Tạo thư mục tạm để chứa các file
 TEMP_DIR="/tmp/ios_build_$(date +%s)"
 mkdir -p "$TEMP_DIR"
@@ -20,15 +15,14 @@ get() {
      REPO_OWNER="TrucPham0502"
      REPO_NAME="CICD"
      BRANCH="main"
-     LINK="https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}"
      local SCRIPT_NAME="$1"
-     echo "get Success: ${SCRIPT_NAME}...."
      curl -H "Authorization: token ${TOKEN}" \
-     -L "${LINK}/${SCRIPT_NAME}" \
+     -L "https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${SCRIPT_NAME}" \
      -o $SCRIPT_NAME 2>/dev/null || true
 }
 
 # Tải các file cần thiết
+echo "Downloading....."
 get build.sh
 get recipients.txt
 get beta.env
