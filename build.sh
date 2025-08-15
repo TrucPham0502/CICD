@@ -447,11 +447,13 @@ get_last_commits_today() {
 # ------------------------------------------------ main script flow ------------------------------------------------
 
 # ------------------------------------------------ Defaults (you can override env vars) ------------------------------------------------
-DEFAULT_FLUTTER_ROOT="/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"
-DEFAULT_IOS_ROOT="/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"
+DEFAULT_FLUTTER_ROOT="${1:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
+DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
+IOS_BUILD="${3:-IOS_BUILD}"
 
 # DEFAULT_FLUTTER_ROOT="/Users/ftelcmr/Desktop/Source/Flutter_FPTLife"
 # DEFAULT_IOS_ROOT="/Users/ftelcmr/FPT_LIFE"
+
 
 SCHEME="${SCHEME:-FPTLife_beta}"
 CONFIGURATION="${CONFIGURATION:-Release beta}"
@@ -469,14 +471,13 @@ info "EXPORT_METHOD=$EXPORT_METHOD"
 info "TEAM_ID=$TEAM_ID"
 info "STASH_NAME=$STASH_NAME"
 
-
-read -r -p "Đường dẫn source root Flutter (mặc định: $DEFAULT_FLUTTER_ROOT): " FLUTTER_ROOT_INPUT
+# read -r -p "Đường dẫn source root Flutter (mặc định: $DEFAULT_FLUTTER_ROOT): " FLUTTER_ROOT_INPUT
 FLUTTER_ROOT="${FLUTTER_ROOT_INPUT:-$DEFAULT_FLUTTER_ROOT}"
 
-read -r -p "Đường dẫn source root iOS native (mặc định: $DEFAULT_IOS_ROOT): " IOS_ROOT_INPUT
+# read -r -p "Đường dẫn source root iOS native (mặc định: $DEFAULT_IOS_ROOT): " IOS_ROOT_INPUT
 IOS_ROOT="${IOS_ROOT_INPUT:-$DEFAULT_IOS_ROOT}"
 
-FLUTTER_ROOT="$(abs_path "$FLUTTER_ROOT")"
+# FLUTTER_ROOT="$(abs_path "$FLUTTER_ROOT")"
 IOS_ROOT="$(abs_path "$IOS_ROOT")"
 
 info "Flutter root: $FLUTTER_ROOT"
@@ -489,7 +490,7 @@ read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua
 
 
 # ------------------------------------------------ Ask version ------------------------------------------------
-IOS_BUILD="${IOS_BUILD:-}"
+
 
 if [ -z "$IOS_BUILD" ]; then
   read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
