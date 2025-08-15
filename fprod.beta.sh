@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Định nghĩa các biến
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="$1"
 REPO_OWNER="TrucPham0502"
 REPO_NAME="CICD"
 BRANCH="main"
