@@ -490,11 +490,11 @@ fi
 
 # ------------------------------------------------ Ask version ------------------------------------------------
 
-IOS_BUILD="${3:-IOS_BUILD}"
-if [ -z "$IOS_BUILD" ]; then
-  read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
-  IOS_BUILD="${IOS_BUILD_INPUT:-$IOS_BUILD}"
-fi
+# IOS_BUILD="${3:-IOS_BUILD}"
+# if [ -z "$IOS_BUILD" ]; then
+#   read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
+#   IOS_BUILD="${IOS_BUILD_INPUT:-$IOS_BUILD}"
+# fi
 
 
 
@@ -534,12 +534,12 @@ pod_install_update "$IOS_ROOT"
 
 # ---------------------------------------- Prefer env vars but fallback to interactive prompt ----------------------------------------
 
-if [ -n "$IOS_BUILD" ]; then
-  IOS_BUILD="${IOS_BUILD:-1}"
-  set_ios_version "$IOS_ROOT" "$IOS_BUILD"
-else
-  info "Bỏ qua cập nhật iOS version/build"
-fi
+# if [ -n "$IOS_BUILD" ]; then
+#   IOS_BUILD="${IOS_BUILD:-1}"
+#   set_ios_version "$IOS_ROOT" "$IOS_BUILD"
+# else
+#   info "Bỏ qua cập nhật iOS version/build"
+# fi
 
 # ---------------------------------------- Build xcode archive & export ipa ------------------------------------------------------------
 build_xcode_archive_and_export "$IOS_ROOT" "$SCHEME" "$CONFIGURATION" "$TEAM_ID" "$EXPORT_METHOD" "$OUTPUT_IPA_DIR"
