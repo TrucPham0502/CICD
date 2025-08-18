@@ -379,7 +379,7 @@ upload_ipa_to_diawi() {
   job_id=$(echo "$response" | grep -o '"job":"[^"]*"' | cut -d '"' -f 4)
 
   if [ -z "$job_id" ]; then
-    error "❌ Không lấy được job id, kiểm tra token hoặc file IPA." >&2
+    error "❌ $response Không lấy được job id, kiểm tra token hoặc file IPA." >&2
     return 1
   fi
 
