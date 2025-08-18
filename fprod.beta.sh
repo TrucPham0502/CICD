@@ -7,7 +7,7 @@ DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
 IOS_BUILD="${4:-}"
 
 # Tạo thư mục tạm để chứa các file
-TEMP_DIR="/tmp/ios_build_$(date +%s)"
+TEMP_DIR="/tmp/ios_build/$(date +%s)"
 mkdir -p "$TEMP_DIR"
 cd "$TEMP_DIR"
 
