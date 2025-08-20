@@ -490,7 +490,7 @@ fi
 
 # ------------------------------------------------ Ask version ------------------------------------------------
 
-IOS_BUILD="${3:-IOS_BUILD}"
+IOS_BUILD="${3:-}"
 if [ -z "$IOS_BUILD" ]; then
   read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
   IOS_BUILD="${IOS_BUILD_INPUT:-$IOS_BUILD}"
