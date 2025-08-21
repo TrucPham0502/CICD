@@ -4,12 +4,20 @@
 TOKEN="$1"
 DEFAULT_FLUTTER_ROOT="${3:-"/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"}"
 DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
-IOS_BUILD="${4:-}"
+IOS_BUILD="${6:-}"
+BRANCH_FLUTTER="${5:-}"
+BRANCH_IOS="${4:-}"
 
 # Tạo thư mục tạm để chứa các file
 TEMP_DIR="/tmp/ios_build/$(date +%s)"
 mkdir -p "$TEMP_DIR"
 cd "$TEMP_DIR"
+
+cleanup() {
+  echo "[watcher] remove temp dir"
+  cd - >/dev/null
+  rm -rf "$TEMP_DIR"
+}
 
 get() {
      REPO_OWNER="TrucPham0502"
@@ -21,6 +29,8 @@ get() {
      -o $SCRIPT_NAME 2>/dev/null || true
 }
 
+trap cleanup EXIT INT TERM
+
 # Tải các file cần thiết
 echo "Downloading....."
 get build.sh
@@ -31,8 +41,6 @@ get stash.prod.beta.patch
 # Kiểm tra file đã tải về thành công
 if [ ! -f build.sh ] && [ ! -f recipients.txt ] && [ ! -f beta.env ] && [ ! -f Podfile ] && [ ! -f stash.prod.beta.patch ]; then
     echo "❌ Failed to download"
-    cd - >/dev/null
-    rm -rf "$TEMP_DIR"
     exit 1
 fi
 
@@ -41,8 +49,4 @@ chmod +x build.sh
 
 # Chạy script
 source prod.beta.env 2>/dev/null || true
-./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$IOS_BUILD"
-
-# Dọn dẹp
-cd - >/dev/null
-rm -rf "$TEMP_DIR"
+./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$BRANCH_IOS"  "$BRANCH_FLUTTER" "$IOS_BUILD"

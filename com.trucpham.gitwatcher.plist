@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Tên job -->
+    <key>Label</key>
+    <string>com.trucpham.gitwatcher</string>
+
+    <!-- Script sẽ chạy -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/trucpham/Desktop/Project/CICD/gitwatcher.sh</string>
+    </array>
+
+    <!-- Chạy khi login -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Lặp lại sau mỗi X giây (ví dụ 60s) -->
+    <key>StartInterval</key>
+    <integer>60</integer>
+
+    <!-- Lưu log ra file -->
+    <key>StandardOutPath</key>
+    <string>/tmp/gitwatcher.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/gitwatcher.err</string>
+</dict>
+</plist>
+
+ <!-- chmod +x ~/Desktop/Project/CICD/watcher.sh -->
+
+<!-- ~/Library/LaunchAgents/ -->
+
+<!-- launchctl load ~/Library/LaunchAgents/com.trucpham.gitwatcher.plist
+launchctl start com.trucpham.gitwatcher -->
+
+<!-- tail -f /tmp/gitwatcher.out
+tail -f /tmp/gitwatcher.err -->
+
+<!-- launchctl unload ~/Library/LaunchAgents/com.trucpham.gitwatcher.plist -->
+
+
