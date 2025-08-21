@@ -483,7 +483,12 @@ fi
 
 # ---------------------------------------- If iOS branch provided -> checkout/pull ----------------------------------------
 if [ -n "${BRANCH_IOS:-}" ]; then
-  git_checkout_and_pull "$IOS_ROOT" "$BRANCH_IOS" "$SCRIPT_DIR/$STASH_NAME"
+  if[ -n "${STASH_NAME:-}" ]; then
+    info "Đang áp dụng stash '$STASH_NAME' trước khi checkout iOS branch..."
+    git_checkout_and_pull "$IOS_ROOT" "$BRANCH_IOS" "$SCRIPT_DIR/$STASH_NAME"
+  else
+    git_checkout_and_pull "$IOS_ROOT" "$BRANCH_IOS"
+  fi
 else
   info "Bỏ qua checkout iOS (không có branch được cung cấp)."
 fi
