@@ -467,9 +467,11 @@ info "EXPORT_METHOD=$EXPORT_METHOD"
 info "TEAM_ID=$TEAM_ID"
 info "STASH_NAME=$STASH_NAME"
 
-
+IOS_BUILD="${5:-}"
 FLUTTER_ROOT="${2:-}"
 IOS_ROOT="${1:-}"
+BRANCH_FLUTTER="${3:-}"
+BRANCH_IOS="${4:-}"
 
 info "Flutter root: $FLUTTER_ROOT"
 info "iOS root:     $IOS_ROOT"
@@ -478,24 +480,23 @@ info "iOS root:     $IOS_ROOT"
 # ------------------------------------------------ Ask branches ------------------------------------------------
 
 if [ -n "$IOS_ROOT" ]; then
-  read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua): " BRANCH_IOS
+  if [ -z "$BRANCH_IOS" ]; then
+    read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua): " BRANCH_IOS
+  else 
+    echo "Đã cung cấp branch iOS: $BRANCH_IOS"
+  fi
 else
   error "iOS root không được cung cấp. Không thể checkout branch iOS."
   exit 1
 fi
 
 if [ -n "$FLUTTER_ROOT" ]; then
-  read -r -p "Nhập tên branch Flutter muốn checkout (để trống để bỏ qua): " BRANCH_FLUTTER
+ if [ -z "$BRANCH_FLUTTER" ]; then
+    read -r -p "Nhập tên branch Flutter muốn checkout (để trống để bỏ qua): " BRANCH_FLUTTER
+  else 
+    echo "Đã cung cấp branch Flutter: $BRANCH_FLUTTER"
+  fi
 fi
-
-# ------------------------------------------------ Ask version ------------------------------------------------
-
-IOS_BUILD="${3:-}"
-if [ -z "$IOS_BUILD" ]; then
-  read -r -p "Nhập iOS build number (CFBundleVersion) hoặc 'auto' (để trống để bỏ qua): " IOS_BUILD_INPUT
-  IOS_BUILD="${IOS_BUILD_INPUT:-$IOS_BUILD}"
-fi
-
 
 
 # ---------------------------------------- If flutter branch provided -> checkout + build + copy ----------------------------------------
