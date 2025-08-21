@@ -484,7 +484,7 @@ fi
 # ---------------------------------------- If iOS branch provided -> checkout/pull ----------------------------------------
 if [ -n "${BRANCH_IOS:-}" ]; then
   STASH_PATH="${STASH_PATH:-}"
-  if[ -n "${STASH_NAME:-}" ]; then
+  if [ -n "${STASH_NAME:-}" ]; then
     STASH_PATH="$SCRIPT_DIR/$STASH_NAME"
   fi
   git_checkout_and_pull "$IOS_ROOT" "$BRANCH_IOS" "$STASH_PATH"
