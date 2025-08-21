@@ -469,6 +469,8 @@ BRANCH_IOS="${3:-}"
 
 info "Flutter root: $FLUTTER_ROOT"
 info "iOS root:     $IOS_ROOT"
+info "Flutter branch: $BRANCH_FLUTTER"
+info "iOS branch:     $BRANCH_IOS"
 
 
 # ------------------------------------------------ Ask branches ------------------------------------------------
