@@ -88,16 +88,10 @@ git_checkout_and_pull() {
 
   if [ "${DISCARD_BEFORE_PULL:-1}" = "1" ] && [ -n "$status" ]; then
     warn "DISCARD_BEFORE_PULL=1 -> sẽ reset & clean"
-    if confirm "BẠN CHẮC CHẮN muốn bỏ tất cả thay đổi local trong $repo_dir? THIS CANNOT BE UNDONE."; then
-      git reset --hard
-      git clean -fdx
-      status=""
-      info "Các thay đổi local đã bị loại bỏ."
-    else
-      error "Người dùng chọn không discard -> dừng."
-      popd >/dev/null
-      return 0
-    fi
+    git reset --hard
+    git clean -fdx
+    status=""
+    info "Các thay đổi local đã bị loại bỏ." 
   fi
   checkout $branch
   info "git pull --rebase origin $branch"
