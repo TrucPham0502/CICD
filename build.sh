@@ -136,7 +136,7 @@ pod_install_update() {
   pushd "$ios_root" >/dev/null
   command -v pod >/dev/null 2>&1 || error "CocoaPods (pod) không cài đặt."
 
-  if [ "${SKIP_POD_REPO_UPDATE:-1}" != "1" ]; then
+  if [ "${SKIP_POD_REPO_UPDATE:-0}" != "1" ]; then
     info "pod repo update (this may take a while)"
     pod repo update
   else

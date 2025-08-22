@@ -4,6 +4,7 @@ set -euo pipefail
 # (Tuỳ chọn) đảm bảo PATH nếu chạy từ launchd
 FLUTTER_PATH="/Users/trucpham/Documents/flutter/flutter/bin"
 export PATH="/usr/local/bin:/usr/bin:/bin:$FLUTTER_PATH:$PATH"
+export RUBYOPT="-EUTF-8"
 
 
 # Cấu hình
@@ -11,7 +12,7 @@ REPO_FLUTTER="/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"
 REPO_DIR="/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"
 HOOK_SCRIPT="/Users/trucpham/Desktop/Project/CICD/fbeta.sh"
 # nếu bạn muốn tách token ra env var, thay bằng ${GITHUB_PAT} hoặc tương tự
-TOKEN=""
+TOKEN="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"
 
 STATE_DIR="$HOME/.git-remote-watcher"
 LOCK_DIR="$STATE_DIR/lock"
