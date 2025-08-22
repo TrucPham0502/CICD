@@ -16,7 +16,7 @@ TOKEN=""
 
 STATE_DIR="$HOME/.git-remote-watcher"
 LOCK_DIR="$STATE_DIR/lock"
-mkdir -p "$STATE_DIR"
+mkdir -p "$STATE_DIR" 
 
 cd "$REPO_DIR" || exit 1
 
