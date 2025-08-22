@@ -12,7 +12,7 @@ REPO_FLUTTER="/Users/trucpham/Desktop/Source/FPT_LIFE_FLUTTER"
 REPO_DIR="/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"
 HOOK_SCRIPT="/Users/trucpham/Desktop/Project/CICD/fbeta.sh"
 # nếu bạn muốn tách token ra env var, thay bằng ${GITHUB_PAT} hoặc tương tự
-TOKEN="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"
+TOKEN=""
 
 STATE_DIR="$HOME/.git-remote-watcher"
 LOCK_DIR="$STATE_DIR/lock"
