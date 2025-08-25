@@ -404,7 +404,7 @@ send_install_link_email() {
   local subject="$1"
   local message="$2"
   local recipients_file="$3"
-
+open -a Mail >/dev/null 2>&1 || true
 while IFS= read -r email || [ -n "$email" ]; do
    if [ -n "$email" ]; then
       osascript <<EOF
