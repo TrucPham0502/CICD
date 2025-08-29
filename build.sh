@@ -473,6 +473,28 @@ info "Flutter branch: $BRANCH_FLUTTER"
 info "iOS branch:     $BRANCH_IOS"
 
 
+# ------------------------------------------------ Ask branches ------------------------------------------------
+
+if [ -n "$IOS_ROOT" ]; then
+  if [ -z "$BRANCH_IOS" ]; then
+    read -r -p "Nhập tên branch iOS muốn checkout (để trống để bỏ qua): " BRANCH_IOS
+  else 
+    echo "Đã cung cấp branch iOS: $BRANCH_IOS"
+  fi
+else
+  error "iOS root không được cung cấp. Không thể checkout branch iOS."
+  exit 1
+fi
+
+if [ -n "$FLUTTER_ROOT" ]; then
+ if [ -z "$BRANCH_FLUTTER" ]; then
+    read -r -p "Nhập tên branch Flutter muốn checkout (để trống để bỏ qua): " BRANCH_FLUTTER
+  else 
+    echo "Đã cung cấp branch Flutter: $BRANCH_FLUTTER"
+  fi
+fi
+
+
 
 # ---------------------------------------- If flutter branch provided -> checkout + build + copy ----------------------------------------
 if [ -n "${BRANCH_FLUTTER:-}" ]; then
