@@ -1,41 +1,8 @@
 diff --git a/FPTLife.xcodeproj/project.pbxproj b/FPTLife.xcodeproj/project.pbxproj
-index a73902757..98ae44a26 100644
+index 80c86c29e..09c176e89 100644
 --- a/FPTLife.xcodeproj/project.pbxproj
 +++ b/FPTLife.xcodeproj/project.pbxproj
-@@ -313,7 +313,7 @@
- 		3B6B018D2C92FCF000835775 /* UpdateFirmwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B018A2C92FCEF00835775 /* UpdateFirmwareViewController.swift */; };
- 		3BEDFED52C9BD59C006274D5 /* FSSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDFED32C9BD59C006274D5 /* FSSAppDelegate.swift */; };
- 		3BEDFED62C9BD59C006274D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDFED42C9BD59C006274D5 /* Constants.swift */; };
--		5905A5622C7DCD74003932F9 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
-+		5905A5622C7DCD74003932F9 /* (null) in Resources */ = {isa = PBXBuildFile; };
- 		590FB6362C33E3FE00497384 /* DeactivateAccountResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590FB6352C33E3FE00497384 /* DeactivateAccountResponseModel.swift */; };
- 		590FB6382C33E64900497384 /* DeactivateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590FB6372C33E64900497384 /* DeactivateAccountViewModel.swift */; };
- 		592AA7AD2C353BF1007B070C /* ISCDeactiveAccountConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592AA7AB2C353BF1007B070C /* ISCDeactiveAccountConfirmViewController.swift */; };
-@@ -7467,7 +7467,7 @@
- 			files = (
- 				D3A580302AB044FB005F7483 /* ISCRoomsCollectionViewCell.xib in Resources */,
- 				899368312A8DC296003F3EEE /* ISCAssistantTableViewCell.xib in Resources */,
--				5905A5622C7DCD74003932F9 /* BuildFile in Resources */,
-+				5905A5622C7DCD74003932F9 /* (null) in Resources */,
- 				D3AC92632AB1587500D6A6C2 /* ISCRemoveAssistantViewController.xib in Resources */,
- 				89F154302AFB434200F3C652 /* ISCPickerDeviceCentralViewController.xib in Resources */,
- 				60C5D6CA2A8DC8C00001BEC4 /* ISCAccountInfoViewController.xib in Resources */,
-@@ -7734,10 +7734,14 @@
- 			inputFileListPaths = (
- 				"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks-${CONFIGURATION}-input-files.xcfilelist",
- 			);
-+			inputPaths = (
-+			);
- 			name = "[CP] Embed Pods Frameworks";
- 			outputFileListPaths = (
- 				"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks-${CONFIGURATION}-output-files.xcfilelist",
- 			);
-+			outputPaths = (
-+			);
- 			runOnlyForDeploymentPostprocessing = 0;
- 			shellPath = /bin/sh;
- 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks.sh\"\n";
-@@ -8971,10 +8975,10 @@
+@@ -9220,10 +9220,10 @@
  			baseConfigurationReference = A395B9DDFA9E7129297C1ED7 /* Pods-FPTLife.debug beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -48,7 +15,7 @@ index a73902757..98ae44a26 100644
  				CODE_SIGN_ENTITLEMENTS = FPTLife/FPTLife_beta.entitlements;
  				CODE_SIGN_IDENTITY = "Apple Development";
  				CODE_SIGN_STYLE = Automatic;
-@@ -9739,10 +9743,10 @@
+@@ -9992,10 +9992,10 @@
  			baseConfigurationReference = 911F152E8D0B3D17ED7C52F0 /* Pods-FPTLife.release beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
