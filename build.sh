@@ -454,12 +454,14 @@ STASH_NAME="${STASH_NAME:-}"
 DIAWI_TOKEN="${DIAWI_TOKEN:-}"
 APP_STORE_U="${APP_STORE_U:-}"
 APP_STORE_P="${APP_STORE_P:-}"
+RECIPIENTS="${RECIPIENTS:-}"
 
 info "SCHEME=$SCHEME"
 info "CONFIGURATION=$CONFIGURATION"
 info "EXPORT_METHOD=$EXPORT_METHOD"
 info "TEAM_ID=$TEAM_ID"
 info "STASH_NAME=$STASH_NAME"
+info "RECIPIENTS=$RECIPIENTS"
 
 IOS_BUILD="${5:-}"
 FLUTTER_ROOT="${2:-}"
@@ -577,7 +579,7 @@ if [ -n "$INSTALL_LINK" ]; then
   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
     release_note="Release Note:\n$(get_last_commits "$IOS_ROOT" 20)"
   fi
-  send_install_link_email "$SUBJECT" "$MESSAGE\n\n$release_note\n\n\n Best regards,\n\nTruc Pham" "recipients.txt"
+  send_install_link_email "$SUBJECT" "$MESSAGE\n\n$release_note\n\n\n Best regards,\n\nTruc Pham" "$RECIPIENTS.txt"
 else
   error "❌ Không có link cài đặt. Không gửi email."
 fi
