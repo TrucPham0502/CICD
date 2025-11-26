@@ -34,7 +34,7 @@ trap cleanup EXIT INT TERM
 # Tải các file cần thiết
 echo "Downloading....."
 get build.sh
-get recipients.txt
+get beta.recipients.txt
 get beta.env
 get Podfile
 
