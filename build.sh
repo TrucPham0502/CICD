@@ -538,8 +538,9 @@ SMTP_PASS="${7:-}"
 info "Flutter root: $FLUTTER_ROOT"
 info "iOS root:     $IOS_ROOT"
 info "Flutter branch: $BRANCH_FLUTTER"
-info "iOS branch:     $BRANCH_IOS"
-info "mail from user:     $SMTP_USER"
+info "iOS branch: $BRANCH_IOS"
+info "mail from user:  $SMTP_USER"
+
 
 
 # ------------------------------------------------ Ask branches ------------------------------------------------
@@ -668,7 +669,7 @@ if [ -n "$INSTALL_LINK" ]; then
 
   release_note=$(printf "%s" "$release_note" | tr '\n' '<br>')
   smtp_user="$SMTP_USER"
-  smtp_pass=""
+  smtp_pass="$SMTP_PASS"
   send_outlook_email "$SUBJECT" "$INSTALL_LINK" "$branch_name" "$release_note" "$RECIPIENTS.txt" "$smtp_user" "$smtp_pass"
 
 else
