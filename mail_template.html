@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>{{SUBJECT}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff7ed;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      color: #111827;
+    }
+
+    table {
+      border-spacing: 0;
+      width: 100%;
+    }
+
+    .wrapper {
+      padding: 24px 12px;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #fb923c, #f97316);
+      padding: 26px;
+      color: #ffffff;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    /* Content */
+    .content {
+      padding: 26px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .button-wrapper {
+      text-align: center;
+      margin: 26px 0 18px;
+    }
+
+    .btn-download {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #f97316;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      animation: pulse 2s infinite;
+    }
+    .btn-download span {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-top: 4px;
+    }
+
+    .meta {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #374151;
+      text-align: center;
+    }
+
+    /* QR section */
+    .qr-section {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .qr-section img {
+      margin-top: 10px;
+      border: 10px solid #fff7ed;
+      border-radius: 14px;
+    }
+
+    /* Warning */
+    .warning {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff7ed;
+      border: 2px solid #f97316;
+      color: #9a3412;
+      font-size: 14px;
+    }
+
+    .warning strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    /* Release note */
+    .release-title {
+      margin-top: 34px;
+    }
+
+    .release-box {
+      margin-top: 12px;
+      background: #fffaf5;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      color: #7c2d12;
+    }
+
+    /* Guide */
+    .guide {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px dashed #fed7aa;
+    }
+
+    .guide h3 {
+      margin-bottom: 10px;
+    }
+
+    .guide p,
+    .guide li {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    /* Footer */
+    .footer {
+      background: #fff7ed;
+      padding: 18px;
+      font-size: 13px;
+      color: #7c2d12;
+      text-align: center;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(249,115,22,0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(249,115,22,0); }
+      100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <table class="wrapper">
+    <tr>
+      <td>
+        <table class="container">
+
+          <!-- Header -->
+          <tr>
+            <td class="header">
+              <h1>📱 FPTLife iOS App – {{BRANCH_NAME}} </h1>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td class="content">
+              <p>Xin chào,</p>
+
+              <p>
+                Một bản build iOS mới đã sẵn sàng để kiểm thử.
+                Vui lòng cài đặt ứng dụng bằng nút bên dưới.
+              </p>
+
+              <!-- Download -->
+              <div class="button-wrapper">
+                <a href="{{INSTALL_LINK}}" class="btn-download">
+                  ⬇️ Download & Install
+                  <span>Tap để cài đặt trực tiếp trên iPhone</span>
+                </a>
+              </div>
+
+              <!-- QR -->
+              <div class="qr-section">
+                <p><strong>📲 Quét QR để cài đặt nhanh</strong></p>
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data={{INSTALL_LINK}}"
+                  alt="QR Code"
+                  width="220"
+                  height="220"
+                />
+              </div>
+
+              <!-- Warning -->
+              <div class="warning">
+                <strong>ℹ️ Lưu ý quan trọng:</strong>
+
+                <p>
+                  Bản build này được cung cấp <b>CHỈ NHẰM MỤC ĐÍCH KIỂM THỬ</b>
+                  và <b>KHÔNG HỖ TRỢ CHỨC NĂNG THÔNG BÁO ĐẨY</b>.
+                  Vui lòng sử dụng để kiểm thử các tính năng
+                  <b>KHÔNG LIÊN QUAN ĐẾN PUSH NOTIFICATION</b>.
+                </p>
+
+                <p>
+                  Để kiểm thử đầy đủ chức năng thông báo đẩy,
+                  vui lòng cài đặt ứng dụng thông qua
+                  <b>TestFlight</b> (nếu khả dụng).
+                </p>
+
+                <p>
+                  Link tải xuống chỉ có hiệu lực trong vòng
+                  <b>7 ngày kể từ thời điểm bạn nhận được email này</b>.
+                </p>
+              </div>
+
+              <!-- Release Notes -->
+              <h3 class="release-title">📌 Release Notes</h3>
+              <div class="release-box">{{RELEASE_NOTE}}
+              </div>
+
+              <!-- Guide -->
+              <div class="guide">
+                <h3>📱 Hướng dẫn tin cậy ứng dụng trên iOS</h3>
+
+                <p>
+                  Trong một số trường hợp, ứng dụng được cài đặt từ link nội bộ
+                  có thể không mở được ngay sau khi cài đặt.
+                  Vui lòng thực hiện các bước sau để cấp quyền tin cậy:
+                </p>
+
+                <ol>
+                  <li>Mở <strong>Settings</strong> → <strong>General</strong></li>
+                  <li>Chọn <strong>VPN & Device Management</strong> (hoặc <strong>Device Management</strong>)</li>
+                  <li>Chọn chứng chỉ của nhà phát triển tương ứng</li>
+                  <li>Nhấn <strong>Trust</strong> để xác nhận</li>
+                </ol>
+
+                <p>
+                  Sau khi hoàn tất, vui lòng mở lại ứng dụng để tiếp tục kiểm thử.
+                </p>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="footer">
+              Best regards,<br/>
+              Truc Pham<br/>
+              <em>Automated CI Build Notification</em>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
