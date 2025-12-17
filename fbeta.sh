@@ -37,6 +37,7 @@ trap cleanup EXIT INT TERM
 echo "Downloading....."
 get build.sh
 get beta.recipients.txt
+get mail_template.html
 get beta.env
 get Podfile
 
