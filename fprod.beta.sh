@@ -7,7 +7,8 @@ DEFAULT_IOS_ROOT="${2:-"/Users/trucpham/Desktop/Source/FPT_LIFE_iOS"}"
 IOS_BUILD="${6:-}"
 BRANCH_FLUTTER="${5:-}"
 BRANCH_IOS="${4:-}"
-
+SMTP_USER="trucpn3@fpt.com"
+SMTP_PASS=""
 # Tạo thư mục tạm để chứa các file
 TEMP_DIR="/tmp/ios_build/$(date +%s)"
 mkdir -p "$TEMP_DIR"
@@ -49,4 +50,4 @@ chmod +x build.sh
 
 # Chạy script
 source prod.beta.env 2>/dev/null || true
-./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$BRANCH_IOS"  "$BRANCH_FLUTTER" "$IOS_BUILD"
+./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$BRANCH_IOS"  "$BRANCH_FLUTTER" "$IOS_BUILD" "$SMTP_USER" "$SMTP_PASS"

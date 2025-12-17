@@ -421,6 +421,70 @@ EOF
   done < "$recipients_file"
 }
 
+send_outlook_email() {
+  local subject="$1"
+  local install_link="$2"
+  local branch_name="$3"
+  local release_note="$4"
+  local recipients_file="$5"
+  local smtp_user="$6"
+  local smtp_pass="$7"
+
+
+  local html_template="mail_template.html"
+
+  local smtp_host="smtp.office365.com"
+  local smtp_port="587"
+
+  # ===== Validate =====
+  if [ ! -f "$recipients_file" ]; then
+    echo "❌ Không tìm thấy file recipients: $recipients_file"
+    return 1
+  fi
+
+  if [ ! -f "$html_template" ]; then
+    echo "❌ Không tìm thấy $html_template"
+    return 1
+  fi
+
+  # ===== Render HTML =====
+  local html_body
+  html_body=$(sed \
+    -e "s|{{SUBJECT}}|$subject|g" \
+    -e "s|{{INSTALL_LINK}}|$install_link|g" \
+    -e "s|{{BRANCH_NAME}}|$branch_name|g" \
+    -e "s|{{RELEASE_NOTE}}|$release_note|g" \
+    "$html_template")
+
+  # ===== Send từng mail =====
+  while IFS= read -r email || [ -n "$email" ]; do
+    [ -z "$email" ] && continue
+
+    curl --silent --show-error --fail \
+      --url "smtp://${smtp_host}:${smtp_port}" \
+      --ssl-reqd \
+      --mail-from "$smtp_user" \
+      --mail-rcpt "$email" \
+      --user "$smtp_user:$smtp_pass" \
+      --upload-file - <<EOF
+From: $smtp_user
+To: $email
+Subject: $subject
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+$html_body
+EOF
+
+    if [ $? -eq 0 ]; then
+      echo "📧 Đã gửi email tới: $email"
+    else
+      echo "❌ Gửi mail thất bại tới: $email"
+    fi
+  done < "$recipients_file"
+}
+
+
 # ----------------------------------------  Get last commits ---------------------------------------- 
 get_last_commits() {
   local repo_dir="$1"
@@ -468,11 +532,14 @@ FLUTTER_ROOT="${2:-}"
 IOS_ROOT="${1:-}"
 BRANCH_FLUTTER="${4:-}"
 BRANCH_IOS="${3:-}"
+SMTP_USER="${6:-}"
+SMTP_PASS="${7:-}"
 
 info "Flutter root: $FLUTTER_ROOT"
 info "iOS root:     $IOS_ROOT"
 info "Flutter branch: $BRANCH_FLUTTER"
 info "iOS branch:     $BRANCH_IOS"
+info "mail from user:     $SMTP_USER"
 
 
 # ------------------------------------------------ Ask branches ------------------------------------------------
@@ -568,21 +635,46 @@ fi
 
 # ---------------------------------------- send mail ------------------------------------------------------------
 # info "📧 Bắt đầu gửi mail..."
+# if [ -n "$INSTALL_LINK" ]; then
+#   SUBJECT="iOS App Build Mới"
+#   branch_name=""
+#   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
+#     branch_name=$(git -C "$IOS_ROOT" rev-parse --abbrev-ref HEAD)
+#   fi
+#   MESSAGE="Xin chào,\n\nĐây là bản build mới của ứng dụng:\n$INSTALL_LINK\n\nBranch: $branch_name\n\nCài đặt trên thiết bị iOS để test."
+#   release_note=""
+#   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
+#     release_note="Release Note:\n$(get_last_commits "$IOS_ROOT" 20)"
+#   fi
+#   send_install_link_email "$SUBJECT" "$MESSAGE\n\n$release_note\n\n\n Best regards,\n\nTruc Pham" "$RECIPIENTS.txt"
+# else
+#   error "❌ Không có link cài đặt. Không gửi email."
+# fi
 if [ -n "$INSTALL_LINK" ]; then
-  SUBJECT="iOS App Build Mới"
+  SUBJECT="($SCHEME) iOS App Build Mới"
+
   branch_name=""
   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
     branch_name=$(git -C "$IOS_ROOT" rev-parse --abbrev-ref HEAD)
   fi
-  MESSAGE="Xin chào,\n\nĐây là bản build mới của ứng dụng:\n$INSTALL_LINK\n\nBranch: $branch_name\n\nCài đặt trên thiết bị iOS để test."
+
   release_note=""
   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
-    release_note="Release Note:\n$(get_last_commits "$IOS_ROOT" 20)"
+    release_note="$(get_last_commits "$IOS_ROOT" 20)"
   fi
-  send_install_link_email "$SUBJECT" "$MESSAGE\n\n$release_note\n\n\n Best regards,\n\nTruc Pham" "$RECIPIENTS.txt"
+
+  # release_note=$(printf "%s" "$release_note" \
+    #  | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+
+  release_note=$(printf "%s" "$release_note" | tr '\n' '<br>')
+  smtp_user="$SMTP_USER"
+  smtp_pass=""
+  send_outlook_email "$SUBJECT" "$INSTALL_LINK" "$branch_name" "$release_note" "$RECIPIENTS.txt" "$smtp_user" "$smtp_pass"
+
 else
   error "❌ Không có link cài đặt. Không gửi email."
 fi
+
 
 
 info "All done."
