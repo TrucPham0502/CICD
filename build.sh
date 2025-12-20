@@ -660,14 +660,14 @@ if [ -n "$INSTALL_LINK" ]; then
   fi
 
   release_note=""
-  if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
-    release_note="$(get_last_commits "$IOS_ROOT" 20)"
-  fi
+  # if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
+  #   release_note="$(get_last_commits "$IOS_ROOT" 20)"
+  # fi
 
   # release_note=$(printf "%s" "$release_note" \
     #  | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
 
-  release_note=$(printf "%s" "$release_note" | tr '\n' '<br>')
+  # release_note=$(printf "%s" "$release_note" | tr '\n' '<br>')
   smtp_user="$SMTP_USER"
   smtp_pass="$SMTP_PASS"
   send_outlook_email "$SUBJECT" "$INSTALL_LINK" "$branch_name" "$release_note" "$RECIPIENTS.txt" "$smtp_user" "$smtp_pass"
