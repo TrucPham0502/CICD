@@ -1,19 +1,25 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
-  <title>
-    {{SUBJECT}}
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{SUBJECT}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background-color: #fff7ed;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-      color: #111827;
+      background: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      color: #334155;
+      line-height: 1.6;
     }
 
     table {
@@ -22,150 +28,530 @@
     }
 
     .wrapper {
-      padding: 24px 12px;
+      padding: 40px 16px;
     }
 
     .container {
-      max-width: 640px;
-      margin: auto;
+      max-width: 600px;
+      margin: 0 auto;
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      animation: fadeIn 0.6s ease-out;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
     }
 
     /* Header */
     .header {
-      background: linear-gradient(135deg, #fb923c, #f97316);
-      padding: 26px;
-      color: #ffffff;
+      background: #ffffff;
+      padding: 24px 32px;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 22px;
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-color: #2b7cee;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 36px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .view-browser {
+      font-size: 14px;
+      color: #2b7cee;
+      text-decoration: none;
+    }
+
+    .view-browser:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 48px 32px 32px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero h1 .highlight {
+      color: #2b7cee;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #6b7280;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    .mockup-container {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0;
+      /* Remove whitespace between inline-blocks */
+    }
+
+    .phone-mockup {
+      display: inline-block;
+      width: 100%;
+      max-width: 220px;
+      margin: 0 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      border: 5px solid #1f2937;
+      background: #f3f4f6;
+      vertical-align: top;
+      font-size: 16px;
+      /* Reset font size */
+    }
+
+    .phone-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* Content */
     .content {
-      padding: 26px;
-      font-size: 15px;
-      line-height: 1.6;
+      padding: 0 32px 36px;
     }
 
+    .greeting {
+      font-size: 15px;
+      color: #475569;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .intro-text {
+      font-size: 15px;
+      color: #64748b;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    /* Get App Section */
+    .get-app-section {
+      text-align: center;
+      margin: 40px 0;
+      padding: 48px 32px;
+      background: #f8f9fa;
+      border-radius: 16px;
+    }
+
+    .get-app-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 32px;
+    }
+
+    .option-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #9ca3af;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Download Button */
     .button-wrapper {
       text-align: center;
-      margin: 26px 0 18px;
+      margin-bottom: 32px;
     }
 
     .btn-download {
       display: inline-block;
-      padding: 14px 28px;
-      background: #f97316;
+      padding: 14px 32px;
+      background: #1a1d29;
       color: #ffffff !important;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .btn-download:hover {
+      background: #0f1117;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .btn-download .apple-icon {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .btn-download .download-text {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .btn-download .download-on {
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.9;
+      line-height: 1;
+    }
+
+    .btn-download .app-store {
       font-size: 16px;
       font-weight: 600;
-      animation: pulse 2s infinite;
-    }
-    .btn-download span {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0.95;
-      margin-top: 4px;
+      line-height: 1.2;
     }
 
-    .meta {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #374151;
+    /* Divider */
+    .or-divider {
+      position: relative;
       text-align: center;
+      margin: 28px 0;
     }
 
-    /* QR section */
+    .or-divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: #d1d5db;
+    }
+
+    .or-divider span {
+      position: relative;
+      background: #f8f9fa;
+      padding: 0 16px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9ca3af;
+      letter-spacing: 1px;
+    }
+
+    /* QR Section */
     .qr-section {
-      margin-top: 12px;
       text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .qr-box {
+      display: inline-block;
+      padding: 24px;
+      background: #fde1d3;
+      border-radius: 16px;
+      margin: 20px auto;
     }
 
     .qr-section img {
-      margin-top: 10px;
-      border: 10px solid #fff7ed;
-      border-radius: 14px;
-    }
-
-    /* Warning */
-    .warning {
-      margin-top: 28px;
-      padding: 18px;
-      border-radius: 14px;
-      background: #fff7ed;
-      border: 2px solid #f97316;
-      color: #9a3412;
-      font-size: 14px;
-    }
-
-    .warning strong {
       display: block;
-      margin-bottom: 6px;
-      font-size: 15px;
+      border-radius: 12px;
+      background: #ffffff;
     }
 
-    /* Release note */
-    .release-title {
-      margin-top: 34px;
+    .qr-caption {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 16px;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      height: 1px;
+      background: #e5e7eb;
+      margin: 40px 0;
+      border: none;
+    }
+
+    /* Info Cards */
+    .info-card {
+      margin: 32px 0;
+      padding: 24px;
+      border-radius: 12px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+    }
+
+    .info-card .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #78350f;
+    }
+
+    .info-card .card-icon-container {
+      width: 24px;
+      height: 24px;
+      background-color: #78350f;
+      border-radius: 50%;
+    }
+
+    .info-card .card-icon {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .info-card .bullet-table {
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .info-card .bullet-cell {
+      padding: 0 0 12px 0;
+      vertical-align: top;
+    }
+
+    .info-card .bullet-dot {
+      color: #f59e0b;
+      font-size: 18px;
+      line-height: 1.2;
+      padding-right: 8px;
+    }
+
+    .info-card .bullet-text {
+      font-size: 14px;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    .info-card li strong {
+      color: #78350f;
+      font-weight: 600;
+    }
+
+    /* Release Notes */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
     }
 
     .release-box {
-      margin-top: 12px;
-      background: #fffaf5;
-      border: 1px solid #fed7aa;
-      border-radius: 12px;
-      padding: 16px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
       font-size: 13px;
+      line-height: 1.7;
       white-space: pre-wrap;
-      color: #7c2d12;
+      color: #57534e;
+      box-shadow: none;
+      overflow-x: auto;
     }
 
-    /* Guide */
+    /* Guide Section */
     .guide {
-      margin-top: 36px;
-      padding-top: 18px;
-      border-top: 1px dashed #fed7aa;
+      margin-top: 32px;
     }
 
-    .guide h3 {
-      margin-bottom: 10px;
+    .guide-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 24px;
     }
 
-    .guide p,
-    .guide li {
+    .guide-item {
+      margin-bottom: 24px;
+    }
+
+    .guide-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .guide-icon {
+      width: 48px;
+      height: 48px;
+      background-color: #dbeafe;
+      border-radius: 12px;
+      text-align: center;
+      line-height: 48px;
+      font-size: 24px;
+      color: #2b7cee;
+    }
+
+    .guide-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0 0 6px 0;
+    }
+
+    .guide-content p {
       font-size: 14px;
-      color: #374151;
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.6;
     }
 
     /* Footer */
     .footer {
-      background: #fff7ed;
-      padding: 18px;
-      font-size: 13px;
-      color: #7c2d12;
+      background: #f9fafb;
+      padding: 40px 32px;
       text-align: center;
+      border-top: 1px solid #e5e7eb;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(249,115,22,0.6); }
-      70% { box-shadow: 0 0 0 14px rgba(249,115,22,0); }
-      100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #e5e7eb;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      transition: background 0.2s ease;
+    }
+
+    .social-icons a:hover {
+      background: #d1d5db;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      font-size: 13px;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      text-decoration: underline;
+      margin: 0 4px;
+    }
+
+    .footer-links a:hover {
+      color: #6b7280;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 28px 0;
+      border: none;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+      .wrapper {
+        padding: 20px 12px;
+      }
+
+      .header {
+        padding: 24px 20px;
+      }
+
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .hero {
+        padding: 32px 20px;
+      }
+
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .mockup-container {
+        margin-top: 24px;
+      }
+
+      .phone-mockup {
+        width: 100%;
+        max-width: 160px;
+        border-width: 3px;
+        border-radius: 12px;
+      }
+
+      .content {
+        padding: 20px 20px;
+      }
+
+      .btn-download {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .qr-section {
+        padding: 16px 12px;
+      }
+
+      .guide {
+        padding: 16px 12px;
+      }
+    }
+
+    /* Subtle Animation */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      animation: fadeIn 0.4s ease-out;
     }
   </style>
 </head>
@@ -175,92 +561,222 @@
     <tr>
       <td>
         <table class="container">
-
           <!-- Header -->
           <tr>
             <td class="header">
-              <h1>📱 FPTLife iOS App – {{BRANCH_NAME}} </h1>
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="left">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="left" valign="middle">
+                          <a href="#" style="text-decoration: none; display: inline-block; vertical-align: middle;">
+                            <img
+                              src="https://play-lh.googleusercontent.com/-PsWQLLf04GfgS0qkzNgPqnOyKQbkeOGUvW-xb-bgmLszggIsjj8TF7Ldp38Oo0NxJo=w240-h480"
+                              alt="FPTLife" width="46"
+                              style="display: inline-block; width: 46px; height: auto; border-radius: 12px; vertical-align: middle;"
+                              border="0" />
+                            <span
+                              style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 700; color: #1f2937; vertical-align: middle; padding-left: 6px;"></span>
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Hero Section -->
+          <tr>
+            <td class="hero">
+              <h1>{{SUBJECT}}, <span class="highlight">sẵn sàng.</span></h1>
+              <p>
+                Một bản build ({{BRANCH_NAME}}) iOS mới đã sẵn sàng để kiểm thử.
+                Vui lòng cài đặt ứng dụng bằng nút bên dưới.
+              </p>
+
+              <div class="mockup-container">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"
+                  style="max-width: 480px; margin: 0 auto;">
+                  <tr>
+                    <td width="50%" align="center" valign="top" style="padding: 0 4px;">
+                      <div class="phone-mockup">
+                        <img
+                          src="https://play-lh.googleusercontent.com/CfLuSf-FUeYPN7HtSfD6jwtuFhJkK3FGbZN-p3sXAMPaAWJzlCAOvQr-pn_xa7bSJZWVmjj5SdT9zXLYRDL6=w2560-h1440"
+                          alt="FPTLife App Interface 1" width="220"
+                          style="width: 100%; max-width: 220px; height: auto;" />
+                      </div>
+                    </td>
+                    <td width="50%" align="center" valign="top" style="padding: 0 4px;">
+                      <div class="phone-mockup">
+                        <img
+                          src="https://play-lh.googleusercontent.com/1AI6EBV-Xcq6XYRQrA-iI-PpeFuvyLLxn8QTwG-Em_IaNigrYBfpRUdB7Qi-8-kztYp2gsLZk9sC1MtBphbUkg=w2560-h1440"
+                          alt="FPTLife App Interface 2" width="220"
+                          style="width: 100%; max-width: 220px; height: auto;" />
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </td>
           </tr>
 
           <!-- Content -->
           <tr>
             <td class="content">
-              <p>Xin chào,</p>
 
-              <p>
-                Một bản build iOS mới đã sẵn sàng để kiểm thử.
-                Vui lòng cài đặt ứng dụng bằng nút bên dưới.
-              </p>
+              <!-- Get App Section -->
+              <div class="get-app-section">
+                <h2 class="get-app-title">Tải ứng dụng</h2>
 
-              <!-- Download -->
-              <div class="button-wrapper">
-                <a href="{{INSTALL_LINK}}" class="btn-download">
-                  ⬇️ Download & Install
-                  <span>Tap để cài đặt trực tiếp trên iPhone</span>
-                </a>
+                <div class="option-label">Tùy chọn 1: Đang dùng iPhone?</div>
+
+                <div class="button-wrapper">
+                  <a href="{{INSTALL_LINK}}" class="btn-download">
+                    <span class="download-text">
+                      <span class="download-on"></span>
+                      <span class="app-store">Download & Install</span>
+                    </span>
+                  </a>
+                </div>
+
+                <div class="or-divider">
+                  <span>HOẶC</span>
+                </div>
+
+                <div class="option-label">Tùy chọn 2: Đang dùng máy tính?</div>
+
+                <div class="qr-section">
+                  <div class="qr-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{INSTALL_LINK}}"
+                      alt="QR Code" width="200" height="200" />
+                  </div>
+                  <div class="qr-caption">Quét bằng camera để tải ngay</div>
+                </div>
               </div>
 
-              <!-- QR -->
-              <div class="qr-section">
-                <p><strong>📲 Quét QR để cài đặt nhanh</strong></p>
-                <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data={{INSTALL_LINK}}"
-                  alt="QR Code"
-                  width="220"
-                  height="220"
-                />
+              <hr class="section-divider">
+
+              <!-- Important Notice -->
+              <div class="info-card">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td align="left" style="padding-bottom: 16px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" align="left">
+                        <tr>
+                          <td width="40" style="padding-right: 8px;">
+                            <table border="0" cellpadding="0" cellspacing="0" class="card-icon-container" width="24"
+                              height="24">
+                              <tr>
+                                <td align="center" valign="middle" class="card-icon" height="24" width="24"
+                                  style="line-height: 24px;">!</td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td valign="middle" class="card-title" align="left">
+                            <span style="display: block; line-height: 24px;">Lưu ý</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <table border="0" cellpadding="0" cellspacing="0" class="bullet-table">
+                  <tr>
+                    <td class="bullet-cell">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td width="20" valign="top" class="bullet-dot" style="padding-top: 4px;">•</td>
+                          <td valign="top" class="bullet-text"><strong>Bản kiểm thử:</strong> Build này chỉ dành cho mục
+                            đích kiểm thử nội bộ và không hỗ trợ chức năng thông báo đẩy.</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bullet-cell">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td width="20" valign="top" class="bullet-dot" style="padding-top: 4px;">•</td>
+                          <td valign="top" class="bullet-text"><strong>TestFlight:</strong> Để kiểm thử đầy đủ chức năng
+                            push notification, vui lòng sử dụng TestFlight (nếu khả dụng).</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bullet-cell" style="padding-bottom: 0;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td width="20" valign="top" class="bullet-dot" style="padding-top: 4px;">•</td>
+                          <td valign="top" class="bullet-text"><strong>Thời hạn:</strong> Link tải xuống chỉ có hiệu lực
+                            trong vòng 7 ngày kể từ thời điểm bạn nhận được email này.</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
               </div>
 
-              <!-- Warning -->
-              <div class="warning">
-                <strong>ℹ️ Lưu ý quan trọng:</strong>
-
-                <p>
-                  Bản build này được cung cấp <b>CHỈ NHẰM MỤC ĐÍCH KIỂM THỬ</b>
-                  và <b>KHÔNG HỖ TRỢ CHỨC NĂNG THÔNG BÁO ĐẨY</b>.
-                  Vui lòng sử dụng để kiểm thử các tính năng
-                  <b>KHÔNG LIÊN QUAN ĐẾN PUSH NOTIFICATION</b>.
-                </p>
-
-                <p>
-                  Để kiểm thử đầy đủ chức năng thông báo đẩy,
-                  vui lòng cài đặt ứng dụng thông qua
-                  <b>TestFlight</b> (nếu khả dụng).
-                </p>
-
-                <p>
-                  Link tải xuống chỉ có hiệu lực trong vòng
-                  <b>7 ngày kể từ thời điểm bạn nhận được email này</b>.
-                </p>
-              </div>
+              <hr class="section-divider">
 
               <!-- Release Notes -->
-              <h3 class="release-title">📌 Release Notes</h3>
-              <div class="release-box">
-                {{RELEASE_NOTE}}
-              </div>
+              <h3 class="section-title">
+                <span>📌</span>
+                <span>Release Notes</span>
+              </h3>
+              <div class="release-box">{{RELEASE_NOTE}}</div>
 
-              <!-- Guide -->
+              <hr class="section-divider">
+
+              <!-- Installation Guide -->
               <div class="guide">
-                <h3>📱 Hướng dẫn tin cậy ứng dụng trên iOS</h3>
+                <h3 class="guide-title">📱 Hướng dẫn tin cậy ứng dụng trên iOS</h3>
 
-                <p>
-                  Trong một số trường hợp, ứng dụng được cài đặt từ link nội bộ
-                  có thể không mở được ngay sau khi cài đặt.
-                  Vui lòng thực hiện các bước sau để cấp quyền tin cậy:
-                </p>
+                <div class="guide-item">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td width="48" valign="top" style="padding-right: 16px;">
+                        <div class="guide-icon">⚙️</div>
+                      </td>
+                      <td valign="top" class="guide-content">
+                        <h4 style="margin: 0 0 6px 0;">Bước 1: Mở Settings</h4>
+                        <p style="margin: 0;">Vào Settings → General trên thiết bị iOS của bạn.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
 
-                <ol>
-                  <li>Mở <strong>Settings</strong> → <strong>General</strong></li>
-                  <li>Chọn <strong>VPN & Device Management</strong> (hoặc <strong>Device Management</strong>)</li>
-                  <li>Chọn chứng chỉ của nhà phát triển tương ứng</li>
-                  <li>Nhấn <strong>Trust</strong> để xác nhận</li>
-                </ol>
+                <div class="guide-item">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td width="48" valign="top" style="padding-right: 16px;">
+                        <div class="guide-icon">🔐</div>
+                      </td>
+                      <td valign="top" class="guide-content">
+                        <h4 style="margin: 0 0 6px 0;">Bước 2: Device Management</h4>
+                        <p style="margin: 0;">Chọn VPN & Device Management, sau đó chọn chứng chỉ nhà phát triển.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
 
-                <p>
-                  Sau khi hoàn tất, vui lòng mở lại ứng dụng để tiếp tục kiểm thử.
-                </p>
+                <div class="guide-item">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td width="48" valign="top" style="padding-right: 16px;">
+                        <div class="guide-icon">✅</div>
+                      </td>
+                      <td valign="top" class="guide-content">
+                        <h4 style="margin: 0 0 6px 0;">Bước 3: Trust Certificate</h4>
+                        <p style="margin: 0;">Nhấn Trust để xác nhận và hoàn tất quá trình cài đặt.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </td>
           </tr>
@@ -268,15 +784,22 @@
           <!-- Footer -->
           <tr>
             <td class="footer">
-              Best regards,<br/>
-              Truc Pham<br/>
-              <em>Automated CI Build Notification</em>
+              <!-- Footer Text -->
+              <p class="footer-text">
+                Email này được gửi tự động vì bạn đã yêu cầu link để tải ứng dụng FPTLife.
+                Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.
+              </p>
+
+              <!-- Copyright -->
+              <div class="footer-copyright">
+
+              </div>
             </td>
           </tr>
-
         </table>
       </td>
     </tr>
   </table>
 </body>
+
 </html>
