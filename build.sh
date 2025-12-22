@@ -652,7 +652,7 @@ fi
 #   error "❌ Không có link cài đặt. Không gửi email."
 # fi
 if [ -n "$INSTALL_LINK" ]; then
-  SUBJECT="($SCHEME)"
+  SUBJECT="$SCHEME"
 
   branch_name=""
   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
