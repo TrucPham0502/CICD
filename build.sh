@@ -659,7 +659,7 @@ if [ -n "$INSTALL_LINK" ]; then
     branch_name=$(git -C "$IOS_ROOT" rev-parse --abbrev-ref HEAD)
   fi
 
-  release_note=""
+  release_note="No message"
   # if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
   #   release_note="$(get_last_commits "$IOS_ROOT" 20)"
   # fi
