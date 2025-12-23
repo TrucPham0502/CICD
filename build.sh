@@ -519,6 +519,7 @@ DIAWI_TOKEN="${DIAWI_TOKEN:-}"
 APP_STORE_U="${APP_STORE_U:-}"
 APP_STORE_P="${APP_STORE_P:-}"
 RECIPIENTS="${RECIPIENTS:-}"
+ENV="${ENV:-}"
 
 info "SCHEME=$SCHEME"
 info "CONFIGURATION=$CONFIGURATION"
@@ -526,6 +527,7 @@ info "EXPORT_METHOD=$EXPORT_METHOD"
 info "TEAM_ID=$TEAM_ID"
 info "STASH_NAME=$STASH_NAME"
 info "RECIPIENTS=$RECIPIENTS"
+info "ENV=$ENV"
 
 IOS_BUILD="${5:-}"
 FLUTTER_ROOT="${2:-}"
@@ -652,7 +654,7 @@ fi
 #   error "❌ Không có link cài đặt. Không gửi email."
 # fi
 if [ -n "$INSTALL_LINK" ]; then
-  SUBJECT="$SCHEME"
+  SUBJECT="$ENV"
 
   branch_name=""
   if [ -n "$IOS_ROOT" ] && [ -d "$IOS_ROOT/.git" ]; then
