@@ -1,8 +1,32 @@
 diff --git a/FPTLife.xcodeproj/project.pbxproj b/FPTLife.xcodeproj/project.pbxproj
-index b9459b531..9a515af3a 100644
+index 0abc7129b..3d2d29056 100644
 --- a/FPTLife.xcodeproj/project.pbxproj
 +++ b/FPTLife.xcodeproj/project.pbxproj
-@@ -9224,10 +9224,10 @@
+@@ -1440,9 +1440,9 @@
+ 		FE11F62F2E67D8CC00C99B26 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11F62C2E67D8CC00C99B26 /* StorageModel.swift */; };
+ 		FE11F6322E67D9D200C99B26 /* FirebaseRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11F6302E67D9D200C99B26 /* FirebaseRemoteConfig.swift */; };
+ 		FE11F6362E68049B00C99B26 /* AppFlutterBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11F6352E68048600C99B26 /* AppFlutterBaseViewModel.swift */; };
+-		FEB61EB92F14A9E6006A52AB /* privateMode_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB61EB82F14A9E6006A52AB /* privateMode_loading.json */; };
+ 		FE999E262EC70DE800D89125 /* FlutterLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE999E252EC70DE800D89125 /* FlutterLoginViewModel.swift */; };
+ 		FE999E272EC70DE800D89125 /* FlutterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE999E242EC70DE800D89125 /* FlutterLoginViewController.swift */; };
++		FEB61EB92F14A9E6006A52AB /* privateMode_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB61EB82F14A9E6006A52AB /* privateMode_loading.json */; };
+ 		FECBB6F92EFBC59200FE7A72 /* AppAlertWithImageHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECBB6F82EFBC57A00FE7A72 /* AppAlertWithImageHeaderController.swift */; };
+ 		FECBB6FB2EFBCFCF00FE7A72 /* AppAlertImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECBB6FA2EFBCFCE00FE7A72 /* AppAlertImageController.swift */; };
+ 		FECBB6FD2EFBDA0500FE7A72 /* ConfirmBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECBB6FC2EFBD9F700FE7A72 /* ConfirmBottomSheet.swift */; };
+@@ -2974,11 +2974,11 @@
+ 		FE11F6302E67D9D200C99B26 /* FirebaseRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfig.swift; sourceTree = "<group>"; };
+ 		FE11F6352E68048600C99B26 /* AppFlutterBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlutterBaseViewModel.swift; sourceTree = "<group>"; };
+ 		FE7B36D32E9E40FF00B01BE5 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
+-		FEB61EB82F14A9E6006A52AB /* privateMode_loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = privateMode_loading.json; sourceTree = "<group>"; };
+ 		FE999E242EC70DE800D89125 /* FlutterLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterLoginViewController.swift; sourceTree = "<group>"; };
+ 		FE999E252EC70DE800D89125 /* FlutterLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterLoginViewModel.swift; sourceTree = "<group>"; };
+ 		FE999E282EC71EE700D89125 /* FPTLifeDebug uat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FPTLifeDebug uat.entitlements"; sourceTree = "<group>"; };
+ 		FE999E292EC71EF500D89125 /* FPTLifeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FPTLifeRelease.entitlements; sourceTree = "<group>"; };
++		FEB61EB82F14A9E6006A52AB /* privateMode_loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = privateMode_loading.json; sourceTree = "<group>"; };
+ 		FECBB6F82EFBC57A00FE7A72 /* AppAlertWithImageHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertWithImageHeaderController.swift; sourceTree = "<group>"; };
+ 		FECBB6FA2EFBCFCE00FE7A72 /* AppAlertImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertImageController.swift; sourceTree = "<group>"; };
+ 		FECBB6FC2EFBD9F700FE7A72 /* ConfirmBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmBottomSheet.swift; sourceTree = "<group>"; };
+@@ -9705,10 +9705,10 @@
  			baseConfigurationReference = A395B9DDFA9E7129297C1ED7 /* Pods-FPTLife.debug beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -12,10 +36,10 @@ index b9459b531..9a515af3a 100644
  				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 -				BUNDLE_DISPLAY_NAME = "FPT Life Beta";
 +				BUNDLE_DISPLAY_NAME = "FPT Life UAT";
- 				CODE_SIGN_ENTITLEMENTS = FPTLife/FPTLife_beta.entitlements;
+ 				CODE_SIGN_ENTITLEMENTS = "FPTLife/FPTLifeDebug beta.entitlements";
  				CODE_SIGN_IDENTITY = "Apple Development";
  				CODE_SIGN_STYLE = Automatic;
-@@ -9996,10 +9996,10 @@
+@@ -10477,10 +10477,10 @@
  			baseConfigurationReference = 911F152E8D0B3D17ED7C52F0 /* Pods-FPTLife.release beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
