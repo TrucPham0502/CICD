@@ -36,13 +36,13 @@ trap cleanup EXIT INT TERM
 # Tải các file cần thiết
 echo "Downloading....."
 get build.sh
-get beta.recipients.txt
+get uat.recipients.txt
 get mail_template.html
-get beta.env
+get uat.env
 get Podfile
 
 # Kiểm tra file đã tải về thành công
-if [ ! -f build.sh ] && [ ! -f beta.recipients.txt ] && [ ! -f beta.env ] && [ ! -f Podfile ]; then
+if [ ! -f build.sh ] && [ ! -f uat.recipients.txt ] && [ ! -f uat.env ] && [ ! -f Podfile ]; then
     echo "❌ Failed to download"
     exit 1
 fi
@@ -50,7 +50,7 @@ fi
 # Cấp quyền thực thi cho script
 chmod +x build.sh
 # Chạy script
-source beta.env 2>/dev/null || true
+source uat.env 2>/dev/null || true
 ./build.sh "$DEFAULT_IOS_ROOT" "$DEFAULT_FLUTTER_ROOT" "$BRANCH_IOS"  "$BRANCH_FLUTTER" "$IOS_BUILD" "$SMTP_USER" "$SMTP_PASS"
 
 
