@@ -1,5 +1,5 @@
 diff --git a/FPTLife.xcodeproj/project.pbxproj b/FPTLife.xcodeproj/project.pbxproj
-index e178c2b57..417b777e8 100644
+index 0a2d1e7b5..90133d3fc 100644
 --- a/FPTLife.xcodeproj/project.pbxproj
 +++ b/FPTLife.xcodeproj/project.pbxproj
 @@ -313,7 +313,7 @@
@@ -11,7 +11,7 @@ index e178c2b57..417b777e8 100644
  		590FB6362C33E3FE00497384 /* DeactivateAccountResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590FB6352C33E3FE00497384 /* DeactivateAccountResponseModel.swift */; };
  		590FB6382C33E64900497384 /* DeactivateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590FB6372C33E64900497384 /* DeactivateAccountViewModel.swift */; };
  		592AA7AD2C353BF1007B070C /* ISCDeactiveAccountConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592AA7AB2C353BF1007B070C /* ISCDeactiveAccountConfirmViewController.swift */; };
-@@ -8636,7 +8636,7 @@
+@@ -8702,7 +8702,7 @@
  			files = (
  				D3A580302AB044FB005F7483 /* ISCRoomsCollectionViewCell.xib in Resources */,
  				899368312A8DC296003F3EEE /* ISCAssistantTableViewCell.xib in Resources */,
@@ -20,7 +20,7 @@ index e178c2b57..417b777e8 100644
  				D3AC92632AB1587500D6A6C2 /* ISCRemoveAssistantViewController.xib in Resources */,
  				89F154302AFB434200F3C652 /* ISCPickerDeviceCentralViewController.xib in Resources */,
  				60C5D6CA2A8DC8C00001BEC4 /* ISCAccountInfoViewController.xib in Resources */,
-@@ -8974,14 +8974,10 @@
+@@ -9040,14 +9040,10 @@
  			inputFileListPaths = (
  				"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks-${CONFIGURATION}-input-files.xcfilelist",
  			);
@@ -35,7 +35,7 @@ index e178c2b57..417b777e8 100644
  			runOnlyForDeploymentPostprocessing = 0;
  			shellPath = /bin/sh;
  			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks.sh\"\n";
-@@ -10385,10 +10381,10 @@
+@@ -10465,10 +10461,10 @@
  			baseConfigurationReference = A395B9DDFA9E7129297C1ED7 /* Pods-FPTLife.debug beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -48,7 +48,7 @@ index e178c2b57..417b777e8 100644
  				CODE_SIGN_ENTITLEMENTS = "FPTLife/FPTLifeDebug beta.entitlements";
  				CODE_SIGN_IDENTITY = "Apple Development";
  				CODE_SIGN_STYLE = Automatic;
-@@ -11157,10 +11153,10 @@
+@@ -11237,10 +11233,10 @@
  			baseConfigurationReference = 911F152E8D0B3D17ED7C52F0 /* Pods-FPTLife.release beta.xcconfig */;
  			buildSettings = {
  				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -61,16 +61,3 @@ index e178c2b57..417b777e8 100644
  				CODE_SIGN_ENTITLEMENTS = FPTLife/FPTLife_beta.entitlements;
  				CODE_SIGN_IDENTITY = "Apple Development";
  				CODE_SIGN_STYLE = Automatic;
-diff --git a/FPTLife/FSS/g/R.generated.swift b/FPTLife/FSS/g/R.generated.swift
-index 93b61ce07..9df6694d9 100644
---- a/FPTLife/FSS/g/R.generated.swift
-+++ b/FPTLife/FSS/g/R.generated.swift
-@@ -3253,7 +3253,7 @@ struct _R {
-     let comAppleDeveloperNetworkingVpnApi = comAppleDeveloperNetworkingVpnApi()
-     let comAppleDeveloperNetworkingWifiInfo: Bool = true
-     struct comAppleDeveloperAssociatedDomains {
--      let applinksBetaCustomerFcamVnApiV2Sso: String = "applinks:beta-customer.fcam.vn/api/v2/sso"
-+      let applinksProdCustomerFcamVnApiV2Sso: String = "applinks:prod-customer.fcam.vn/api/v2/sso"
-     }
-     struct comAppleDeveloperNetworkingVpnApi {
-       let allowVpn: String = "allow-vpn"
