@@ -2,21 +2,6 @@ diff --git a/FPTLife.xcodeproj/project.pbxproj b/FPTLife.xcodeproj/project.pbxpr
 index 0a2d1e7b5..90133d3fc 100644
 --- a/FPTLife.xcodeproj/project.pbxproj
 +++ b/FPTLife.xcodeproj/project.pbxproj
-@@ -9040,14 +9040,10 @@
- 			inputFileListPaths = (
- 				"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks-${CONFIGURATION}-input-files.xcfilelist",
- 			);
--			inputPaths = (
--			);
- 			name = "[CP] Embed Pods Frameworks";
- 			outputFileListPaths = (
- 				"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks-${CONFIGURATION}-output-files.xcfilelist",
- 			);
--			outputPaths = (
--			);
- 			runOnlyForDeploymentPostprocessing = 0;
- 			shellPath = /bin/sh;
- 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FPTLife/Pods-FPTLife-frameworks.sh\"\n";
 @@ -10465,10 +10461,10 @@
  			baseConfigurationReference = A395B9DDFA9E7129297C1ED7 /* Pods-FPTLife.debug beta.xcconfig */;
  			buildSettings = {
